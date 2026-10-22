@@ -1,12 +1,16 @@
-# Ứng Dụng Chấm Công Cho Nhân Viên (`vuukiendinh_2380600509`)
+# Hệ Thống Ứng Dụng Chấm Công Nhân Viên (Fullstack: Flutter Frontend + ASP.NET Core Backend)
 
 - **Sinh viên thực hiện**: **2380600509 - Vưu Kiên Định**
 - **Nhóm / Đề tài**: **Nhóm 8 - Đề số 2** (Ứng dụng chấm công cho nhân viên)
-- **Công nghệ**: Flutter / Dart (Material 3, PascalCase JSON Model đồng bộ Web API)
+- **Repository này bao gồm đầy đủ cả 2 phần**:
+  1. **Flutter Mobile Frontend (Android Studio)**: Thư mục gốc (`lib/`, `android/`, `pubspec.yaml`, `test/`).
+  2. **ASP.NET Core Web API Backend (Visual Studio 2022 - .NET 8.0 & SQL Server)**: Thư mục [`VuuKienDinh_Nhom8_Backend/`](./VuuKienDinh_Nhom8_Backend).
 
 ---
 
-## 1. Tài Khoản Demo 3 Phân Quyền & Mã OTP Mặc Định
+## Phần 1: Flutter Mobile Frontend (`lib/`)
+
+### 1. Tài Khoản Demo 3 Phân Quyền & Mã OTP Mặc Định
 - **Mã xác thực OTP 6 số mặc định**: `123456`
 
 | Phân quyền | Tên đăng nhập | Mật khẩu | Họ tên / Mã NV |
@@ -15,9 +19,7 @@
 | **QUẢN LÝ (HR)** | `ql01` | `123` | Trần Thị Mai Phương (`QL001`) |
 | **ADMIN** | `admin` | `123` | Quản Trị Viên Hệ Thống (`AD001`) |
 
----
-
-## 2. Các Chức Năng Đã Triển Khai
+### 2. Các Chức Năng Đã Triển Khai Trên Mobile App
 1. **Xác thực đa tầng & Phân quyền (`ADMIN`, `QUANLY`, `NHANVIEN`)**:
    - Đăng nhập, Đăng ký tài khoản nhân viên mới, Xác thực OTP 6 số có đếm ngược 60s (`lib/screens/auth/`).
    - Lưu phiên đăng nhập bằng `SharedPreferences` (`lib/services/session_manager.dart`).
@@ -33,3 +35,14 @@
      - **Dynamic QR 15s**: Mã QR tại máy trạm Quản lý (`may_cham_cong_qr_screen.dart`) tự động xoay vòng chuỗi token `MaQRDong` mỗi 15 giây.
      - **Khóa cứng DeviceID (`device_info_plus`)**: Phát hiện và chặn ngay nếu 1 thiết bị di động cố tình chấm công hộ cho 2 mã nhân viên khác nhau trong cùng ngày.
      - **Tính lương Realtime**: Tự động tính `SoGioLam` và `TienCongNgay` ngay khi nhân viên Check-out.
+
+---
+
+## Phần 2: ASP.NET Core Web API Backend (`VuuKienDinh_Nhom8_Backend/`)
+- **Công nghệ**: C# / ASP.NET Core Web API `.NET 8.0`, Entity Framework Core SQL Server (`Database=VuuKienDinh`), xác thực JWT Bearer, BCrypt & MailKit SMTP OTP.
+- **Cấu trúc thư mục Backend**:
+  - `VuuKienDinh_Nhom8_Backend/Controllers/`: `AuthController.cs`, `AdminController.cs`, `AttendanceController.cs`, `FeaturesController.cs`, `ProfileController.cs`.
+  - `VuuKienDinh_Nhom8_Backend/Data/`: `ApplicationDbContext.cs`, `DbSeeder.cs`.
+  - `VuuKienDinh_Nhom8_Backend/Models/` & `Contracts/`: Các Entity & DTOs.
+  - `VuuKienDinh_Nhom8_Backend/Migrations/`: Các bản Migration khởi tạo CSDL SQL Server (`khoitaodinh`).
+  - `VuuKienDinh_Nhom8_Backend/Services/`: `AppServices.cs`, `MappingExtensions.cs`.

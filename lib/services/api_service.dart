@@ -15,8 +15,8 @@ class ApiService {
 
   ApiService._internal();
 
-  // Địa chỉ Web API của nhóm (dễ dàng đổi sang IP LAN hoặc domínio thực tế)
-  static String baseUrl = 'http://10.0.2.2:5000/api';
+  // Địa chỉ Web API của nhóm (khớp cổng 5085 trong launchSettings.json của VuuKienDinh_Nhom8_Backend)
+  static String baseUrl = 'http://10.0.2.2:5085/api';
 
   final MockDataRepository _mockRepo = MockDataRepository.instance;
 
